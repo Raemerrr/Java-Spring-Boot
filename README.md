@@ -8,8 +8,8 @@ Documents
 
 > **Note:**
 >
-> - 2020.06.08 프로젝트 생성. 
->    ** :: Spring Boot ::        (v2.2.2.RELEASE)**
+> - 2020.06.08 프로젝트 생성.    
+>**:: Spring Boot ::        (v2.2.2.RELEASE)**
 >
 >
 >
