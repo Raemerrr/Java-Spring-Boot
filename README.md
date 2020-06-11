@@ -6,9 +6,9 @@ Java Spring Boot Study
 Documents
 -------------
 
-> **Note:**
-> 해당 내용은 'Seoul Wiz'의 Spring 강좌를 참고 하였습니다. 
-(https://www.youtube.com/watch?v=CsOrR-4nH-s&list=PLPvokKzUkaLeiLUDKpqRdP8jtLU8lLKgR)  
+> **Note:**  
+> 해당 내용은 'Seoul Wiz'의 Spring 강좌를 참고 하였습니다.   
+(https://www.youtube.com/watch?v=CsOrR-4nH-s&list=PLPvokKzUkaLeiLUDKpqRdP8jtLU8lLKgR)   
 > - 2020.06.08 프로젝트 생성.    
 >**:: Spring Boot ::        (v2.2.2.RELEASE)**
 >
