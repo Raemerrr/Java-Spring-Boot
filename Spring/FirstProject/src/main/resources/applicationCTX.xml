@@ -26,5 +26,8 @@
 	</constructor-arg>
 	</bean>
 	
+	<!-- <bean id="pencil" class="com.javalec.ex.Pencil4B"/> -->
+	<bean id="pencil" class="com.javalec.ex.Pencil6B"/>
+	<!-- <bean id="pencil" class="com.javalec.ex.Pencil6BnEraser"/> -->
 	
 </beans>
