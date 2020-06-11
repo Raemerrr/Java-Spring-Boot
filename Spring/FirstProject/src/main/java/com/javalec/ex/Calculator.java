@@ -1,7 +1,5 @@
 package com.javalec.ex;
 
-import java.util.ArrayList;
-
 public class Calculator {
     private int firstNum;
     private int secondNum;

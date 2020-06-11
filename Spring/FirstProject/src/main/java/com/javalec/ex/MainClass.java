@@ -22,5 +22,27 @@ public class MainClass {
 		{
 			System.out.println(d.toString());
 		}
+		System.out.println("=========================경계선=========================");
+		Calculator2 c2 = ctx.getBean("calculator2",Calculator2.class);
+		c2.Add();
+		c2.Sub();
+		c2.Mul();
+		c2.Div();
+		for(Integer d : c2.getArr().getArr()) 
+		{
+			System.out.println(d.toString());
+		}
+		System.out.println("=========================경계선=========================");
+		c.Add();
+		c.Sub();
+		c.Mul();
+		c.Div();
+		for(Integer d : c.getArr().getArr())
+		{
+			System.out.println(d.toString());
+		}
+		
+		//사용이 끝나면 닫아주자!
+		ctx.close();
 	}
 }

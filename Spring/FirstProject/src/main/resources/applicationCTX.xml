@@ -17,4 +17,14 @@
 		<ref bean="arrayClass" />
 	</property>
 	</bean>
+	
+	<bean id="calculator2" class="com.javalec.ex.Calculator2">
+	<constructor-arg value ="20"/>
+	<constructor-arg value ="2"/>
+	<constructor-arg>
+		<ref bean="arrayClass" />
+	</constructor-arg>
+	</bean>
+	
+	
 </beans>
