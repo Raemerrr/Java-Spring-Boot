@@ -30,16 +30,28 @@ Documents
 >  
 > - 2020.06.14 7강 ~ 8강  
 > **:: 7강 생명주기(Life Cycle)와 범위(Scope)**  
->  getBean()을 하게 되면 가져다 쓰겠다는 의미  
->  a = getBean(obj);  
->  b = getBean(obj);  
->  둘은 같은 객체를 바라보는 상태  
+>  getBean()을 하게 되면 가져다 쓰겠다는 의미
+>  a = getBean(obj);
+>  b = getBean(obj);
+>  둘은 같은 객체를 바라보는 상태
 >  b를 이용해 값을 수정 하면 a의 값도 변경된다.      
 > **:: 8강 외부 파일을 이용한 설정**  
 >   -외부 파일에서 설정 값 얻어오기 ex) 관리자 계정 정보  
->   -profile 설정 이용하기 ex) 개발망, 외부망 나눠서 작업 가능  
+>   -profile 설정 이용하기 ex) 개발망, 외부망 나눠서 작업 가능   
 >     
->     
+> - 2020.06.15 9강  
+>  AOP란?  
+>  Aspect : 공통 기능  
+>  Advice : Aspect의 기능 자체  
+>  Joinpoint : Advice를 적용해야 되는 부분 ex) 필드, 메소드)(스프링에서는 메소드만 해당)   
+>  Pointcut : Joinpoint의 부분으로 실제로 Advice가 적용된 부분  
+>  Weaving : Advice를 핵심 기능에 적용 하는 범위   
+>  AOP 구현  
+>  1) 의존성 설정 (pom.xml)  
+>  2) 공통 기능의 클랫 제작 - Advice 역할 클래스  
+>  3) XML 설정 파일에 Aspect설정   
+>   
+
 > **Ps:**   
 > - 지속 업데이트 예정  
 
