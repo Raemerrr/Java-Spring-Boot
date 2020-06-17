@@ -28,6 +28,11 @@ public class AdminConnection implements InitializingBean, DisposableBean {
 	public void setAdminPW(String adminPW) {
 		this.adminPW = adminPW;
 	}
+	
+	public void getAdminInfo() 
+	{
+		System.out.println("adminID : "+ adminID + "\n" + "adminPW : " + adminPW);
+	}
 
 	@Override
 	public void destroy() throws Exception {
