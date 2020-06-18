@@ -9,15 +9,18 @@
 	
 	<!-- <context:property-placeholder location="classpath:admin.properties"/>  -->
 	
-	<!-- 9강 AOP -->
+	<aop:aspectj-autoproxy/>
 	<bean id="logAop" class="com.javalec.ex.LogAop"/>
+	<!-- 9강 AOP -->
+	<!-- XML AOP 설정 방법  -->
+	<!-- 
 	<aop:config >
 		<aop:aspect id="logger" ref="logAop">
 		  <aop:pointcut id="publicM" expression="within(com.javalec.ex.*)"/>
 		  <aop:around pointcut-ref="publicM" method="loggerAop" />
 		</aop:aspect>
 	</aop:config>
-	
+	 -->
 	<!-- 
 	<bean id="arrayClass" class="com.javalec.ex.ArrayClass">
 		<property name="arr">
