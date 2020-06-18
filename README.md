@@ -29,7 +29,7 @@ Documents
 > - **2020.06.13 6강**       
 >  DI 설정 방법 - XML방식, JAVA방식, XML&JAVA방식  
 >  　  
-> - **2020.06.14 7강 ~ 8강  **  
+> - **2020.06.14 7강 ~ 8강**  
 > :: 7강 생명주기(Life Cycle)와 범위(Scope)  
 >  getBean()을 하게 되면 가져다 쓰겠다는 의미
 >  a = getBean(obj);
