@@ -10,7 +10,6 @@
 	<!-- <context:property-placeholder location="classpath:admin.properties"/>  -->
 	
 	<!-- 9강 AOP -->
-	<!-- 
 	<bean id="logAop" class="com.javalec.ex.LogAop"/>
 	<aop:config >
 		<aop:aspect id="logger" ref="logAop">
@@ -18,7 +17,6 @@
 		  <aop:around pointcut-ref="publicM" method="loggerAop" />
 		</aop:aspect>
 	</aop:config>
-	-->
 	
 	<!-- 
 	<bean id="arrayClass" class="com.javalec.ex.ArrayClass">
@@ -52,5 +50,4 @@
 		<constructor-arg value ="${adminPW}"/>
 	</bean>
 	 -->
-
 </beans>
