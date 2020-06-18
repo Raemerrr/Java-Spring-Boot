@@ -47,11 +47,14 @@ Documents
 >  Pointcut : Joinpoint의 부분으로 실제로 Advice가 적용된 부분  
 >  Weaving : Advice를 핵심 기능에 적용 하는 범위   
 >  AOP 구현  
->   1) 의존성 설정 (pom.xml)  
->   2) 공통 기능의 클랫 제작 - Advice 역할 클래스  
->   3) XML 설정 파일에 Aspect설정   
+>  1) 의존성 설정 (pom.xml)  
+>  2) 공통 기능의 클랫 제작 - Advice 역할 클래스  
+>  3) XML 설정 파일에 Aspect설정   
 >   
->
+> - 2020.06.18 9강 이슈...   
+>  AOP 설정 오류.. - https://blog.naver.com/rkdfoals/222005244514 참고  
+>   요즘.. 야근과 외근이 많다... 진도를 못나가고 있다..  화이팅..!   
+>     
 > **Ps:**   
 > - 지속 업데이트 예정  
 
