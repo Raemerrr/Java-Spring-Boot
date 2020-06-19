@@ -29,7 +29,7 @@ Documents
 > - **2020.06.13 6강**       
 >  DI 설정 방법 - XML방식, JAVA방식, XML&JAVA방식  
 >  　  
-> - **2020.06.14 7강 ~ 8강**  
+> - **2020.06.14 7강 ~ 8강  **  
 > :: 7강 생명주기(Life Cycle)와 범위(Scope)  
 >  getBean()을 하게 되면 가져다 쓰겠다는 의미
 >  a = getBean(obj);
@@ -60,6 +60,12 @@ Documents
 > - **2020.06.19 10강**  
 >  https://blog.naver.com/rkdfoals?Redirect=Write&categoryNo=19
 >  　  
+> - **2020.06.19 11강**  
+>    1. 스프링 MVC 개요
+>    2. 스프링 MVC 구조 살펴보기
+>    3. resource 폴더 경로
+>      
+>        　  
 > **Ps:**   
 > - 지속 업데이트 예정  
 > - 2020-06-19 블로그(https://blog.naver.com/rkdfoals)에 내용 업로드 예정  
