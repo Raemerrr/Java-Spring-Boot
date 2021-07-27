@@ -1,8 +1,9 @@
 package me.raemerrr.java8to11;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 import java.util.function.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Foo {
     public static void main(String[] args) {
@@ -85,6 +86,55 @@ public class Foo {
             greeting.printNameUpperCase();
 
             IGreeting.printAnything();
+        }
+        /* 5강 자바 8 API의 기본 메소드와 스태틱 메소드 */
+        {
+            {
+                List<String> names = Arrays.asList("raemerrr", "kang", "test", "XXX");
+
+                names.forEach(System.out::println);
+
+                Spliterator<String> spliterator = names.spliterator();
+                Spliterator<String> stringSpliterator = spliterator.trySplit();
+
+                System.out.println("===============spliterator start===============");
+                while (spliterator.tryAdvance(System.out::println)) ;
+                System.out.println("===============spliterator end===============");
+
+                System.out.println("===============stringSpliterator start===============");
+                while (stringSpliterator.tryAdvance(System.out::println)) ;
+                System.out.println("===============stringSpliterator end===============");
+            }
+            {
+                List<String> names = Arrays.asList("raemerrr", "kang", "test", "XXX");
+                long k = names.stream().map(String::toUpperCase)
+                        .filter(s -> s.startsWith("R"))
+                        .count();
+                System.out.println(k);
+            }
+            {
+                List<String> names = Arrays.asList("raemerrr", "kang", "test", "XXX");
+                List<String> l = names.stream()
+                        .map(String::toUpperCase)
+                        .filter(s -> s.length() == 4)
+                        .collect(Collectors.toList());
+
+                Spliterator<String> spliterator = l.spliterator();
+                while (spliterator.tryAdvance(System.out::println)) ;
+            }
+            {
+                List<String> names = Stream.of("raemerrr", "kang", "test", "XXX")
+                        .collect(Collectors.toList());
+                names.removeIf(s -> s.length() == 4);
+                Comparator<String> compareToIgnoreCase = String::compareToIgnoreCase;
+                //names.sort(compareToIgnoreCase);
+                names.sort(compareToIgnoreCase.reversed());
+                System.out.println("======================");
+                for (String name : names) {
+                    System.out.println(name);
+                }
+                System.out.println("======================");
+            }
         }
     }
 }
