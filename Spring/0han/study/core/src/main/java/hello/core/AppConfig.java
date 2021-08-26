@@ -1,6 +1,6 @@
 package hello.core;
 
-import hello.core.Order.*;
+import hello.core.order.*;
 import hello.core.discount.*;
 import hello.core.member.*;
 import org.springframework.context.annotation.Bean;
