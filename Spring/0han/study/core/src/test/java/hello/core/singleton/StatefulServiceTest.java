@@ -24,7 +24,7 @@ class StatefulServiceTest {
 
         //ThreadA : A사용자가 주문 금액 조회
         int price = statefulService1.getPrice();
-        Assertions.assertThat(price).isEqualTo(10000);
+        Assertions.assertThat(price).isEqualTo(20000);
 
     }
 
