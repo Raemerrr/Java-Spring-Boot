@@ -1,13 +1,12 @@
-package com.example.demo.split;
+package com.example.demo.string;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SplitTest {
+public class SrtingTest {
 
     @Test
     void length2SplitTest() {
