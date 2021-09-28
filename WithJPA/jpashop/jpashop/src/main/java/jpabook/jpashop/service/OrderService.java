@@ -57,6 +57,9 @@ public class OrderService {
     /**
      * 주문 검색
      */
+    public Order findOne(Long id) {
+        return orderRepository.findOne(id);
+    }
 //    public List<Order> findAll(OrderSearch orderSearch){
 //        return orderRepository.findAll(orderSearch);
 //    }
