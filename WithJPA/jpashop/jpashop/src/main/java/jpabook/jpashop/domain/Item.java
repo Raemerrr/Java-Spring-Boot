@@ -53,7 +53,7 @@ public abstract class Item {
 
     public void change(String name, int price, int stockQuantity) {
         if (stockQuantity < 0 || price < 0) {
-            throw new NotEnoughStockException("need more stock");
+            throw new IllegalStateException("IllegalStateException");
         }
         this.name = name;
         this.price = price;

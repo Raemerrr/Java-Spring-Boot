@@ -64,7 +64,7 @@ public class ItemController {
     }
 
     @PostMapping("/items/{itemId}/edit")
-    public String updateItem(@PathVariable("itemId") Long itemId, @Valid BookForm form, BindingResult result) {
+    public String updateItem(@PathVariable("itemId") Long itemId, @Valid @ModelAttribute("form") BookForm form, BindingResult result) {
         if (result.hasErrors()) {
             return "items/updateItemForm";
         }
