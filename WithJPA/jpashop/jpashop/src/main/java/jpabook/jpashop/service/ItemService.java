@@ -1,6 +1,7 @@
 package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.Item;
+import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,12 @@ public class ItemService {
         //상품은 동일 이름으로 등록되어도 되는가?
         //validateDuplicateItem(item);
         itemRepository.save(item);
+    }
+
+    @Transactional
+    public void updateItem(Long itemId, String name, int price, int stockQuantity) {
+        Book findItem = (Book) itemRepository.findOne(itemId);
+        findItem.change(name, price, stockQuantity);
     }
 
     private void validateDuplicateItem(Item item) {

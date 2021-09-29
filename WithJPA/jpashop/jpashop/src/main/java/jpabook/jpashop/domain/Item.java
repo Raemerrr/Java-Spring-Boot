@@ -29,6 +29,7 @@ public abstract class Item {
     private List<Category> categories;
 
     //==비즈니스 로직==//
+
     /**
      * stock 증가
      */
@@ -38,6 +39,7 @@ public abstract class Item {
     }
 
     //==비즈니스 로직==//
+
     /**
      * stock 감소
      */
@@ -47,5 +49,14 @@ public abstract class Item {
             throw new NotEnoughStockException("need more stock");
         }
         this.stockQuantity = restStock;
+    }
+
+    public void change(String name, int price, int stockQuantity) {
+        if (stockQuantity < 0 || price < 0) {
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
     }
 }
