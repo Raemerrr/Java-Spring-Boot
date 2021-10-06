@@ -4,7 +4,7 @@
 
 * Hello JPA - 프로젝트 생성
     * persistence.xml 작성
-        ```xml
+        ```xmlㅈ
       <!-- JPA DBMS 드라이버 옵션 (MySQL, Oracle, MS-SQL 등.. 설정 가능) -->
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
       <!-- 각 DBMS(MySQL, Oracle, MS-SQL 등..) 특정 구문에 대한 처리를 위한 설정 -->
@@ -47,5 +47,53 @@
             select m from Member as m
             ```
         * 애플리케이션이 필요한 데이터만 DB에서 불러오려면 결국 검색 조건이 포함된 SQL이 필요!
-        > JPQL은 엔티티 객체를 대상으로 쿼리 (객체지향 쿼리) <br> SQL은 데이터베이스 테이블을 대상으로 쿼리
-    
+      > 1. JPQL은 엔티티 객체를 대상으로 쿼리 (객체지향 쿼리)
+      > 2. SQL은 데이터베이스 테이블을 대상으로 쿼리
+
+#### 영속성 관리 - 내부 동작 방식
+
+* 영속성 컨텍스트 1
+    * JPA에서 가장 중요한 2가지
+      > 1. 객체와 관계형 데이터베이스 매핑하기
+      > 2. 영속성 컨텍스트 : `"엔티티를 영구 저장하는 환경"`
+    * EntityManager.persist(entity); 메서드 실행 시
+      > 1. EntityManager를 통해 Entity를 영속성 컨텍스트라는 곳에 저장하는것을 의미
+      > 2. 트랜잭션이 커밋되기 전까진 DB에 반영되지 않는다!
+* 영속성 컨텍스트 2
+    * 영속성 컨텍스트는 내부에 `1차 캐시`를 가지고 있다.
+        * 1차 캐시는 내부적으로 클래스 멤버 변수로 지정했던 @Id가 키가 되고 Entity(객체)가 값이 된다.
+            ```java
+          @Entity
+          public class Member {
+              @Id // 이 값이 키가 되어 영속성 컨텍스트 1차 캐시에 저장된다.
+              private Long id;
+              ...
+          }
+          ```
+        * EntityManager는 DB트랜잭션 단위로 생성하고 지운다.
+            * `영속성 컨텍스트` - DB트랜잭션 단위로 생성되고 지워진다.
+            * `1차 캐시` - DB트랜잭션 단위로 생성되고 지워진다.
+            * `1차 캐시`는 찰나의 순간(DB트랜잭션 단위)에서만 이득이 있다..(?)
+            * 성능 보다는 객체지향적 관점에서 이점이 있다.
+    * 영속 엔티티의 동일성 보장
+      > 1차 캐시로 반복 가능한 읽기 등급의 트랜잭션 격리 수준을 DB가 아닌 애플리케이션 차원에서 제공
+        ```java
+      Member a = em.find(Member.class , "memeber1");
+      Member b = em.find(Member.class , "memeber1");
+      Member c = a;
+      
+      /**
+      * 아래의 결과가 true인것은 같은 주솟값을 가진 객체라는것의 증명
+      */
+      System.out.println(a == b); // true 출력
+      
+      // 검증 - 주솟값이 같다면 영속성을 유지한 엔티티인가?
+      c.setName("Raemerrr");
+      
+      System.out.println(c == b); // true 출력
+      /**
+      * 객체 c를 수정해도 b에 반영된다. 즉 같은 주솟값을 가진 객체다.
+      * 객체지향적 관점으로 봐도 당연한 결과이다. 
+      */
+      System.out.println(b.getName()); // "Raemerrr"       
+        ```
