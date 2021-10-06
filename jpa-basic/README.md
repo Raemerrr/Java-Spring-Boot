@@ -1,16 +1,16 @@
 > 해당 내용은 인프런 김영한 강사님의 `자바 ORM 표준 JPA 프로그래밍 - 기본편`을 보고 작성하였으며, 문제가 있을 시 바로 삭제하도록 하겠습니다.
 
 ## 목차 🚀
-- [JPA 시작하기](#jpa-----)
-- [영속성 관리 - 내부 동작 방식](#-----------------)
-- [엔티티 매핑](#------)
+- [JPA 시작하기](#jpa-시작하기)
+- [영속성 관리 - 내부 동작 방식](#영속성-관리---내부-동작-방식)
+- [엔티티 매핑](#엔티티-매핑)
 ---
 
 #### JPA 시작하기
 
 * Hello JPA - 프로젝트 생성
     * persistence.xml 작성
-        ```xmlㅈ
+        ```xml
       <!-- JPA DBMS 드라이버 옵션 (MySQL, Oracle, MS-SQL 등.. 설정 가능) -->
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
       <!-- 각 DBMS(MySQL, Oracle, MS-SQL 등..) 특정 구문에 대한 처리를 위한 설정 -->
