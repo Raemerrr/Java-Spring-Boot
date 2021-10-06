@@ -5,10 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
 // 테이블명을 USER로 변경하고자 하면  설정
 // @Table(name = "USER")
+@Entity
 public class Member {
+
+    protected Member() {
+    }
+
+    public Member(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     @Id
     private Long id;
