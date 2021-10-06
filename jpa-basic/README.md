@@ -97,3 +97,26 @@
       */
       System.out.println(b.getName()); // "Raemerrr"       
         ```
+* 플러시
+    > 영속성 컨텍스트의 변경내용을 데이터베이스에 반영
+    * 플러시 발생 시
+        * 변경 감지
+        * 수정된 Entity `쓰기 지연 SQL 저장소`에 등록
+        * `쓰기 지연 SQL 저장소`의 쿼리를 데이터베이스에 전송(등록, 수정, 삭제 등)
+    * 영속성 컨텍스트를 플러시하는 방법
+        * 트랜잭션 커밋 - 플러시 자동 호출
+        * JPQL 쿼리 실행 - 플러시 자동 호출
+        * em.flush() - 직접 호출 (em.flush() 한다고 해서 1차 캐시를 비우는 것은 아님)
+    * JPQL 쿼리 실행 시 플러시가 자동으로 호출되는 이유
+        ```java
+      em.persist(entity1);
+      em.persist(entity2);
+      em.persist(entity3);
+      /**
+      * 중간에 JPQL 실행한다면 DB에 값이 없다면 아무것도 얻어 올 수 없음...
+      * 그러므로 JPQL 쿼리 실행 시 플러시가 자동으로 호출된다.
+      */
+      query = em.createQuery("select m from Member as m", Member.class);
+      List<Member> list = query.getResultList);
+      ```
+        
