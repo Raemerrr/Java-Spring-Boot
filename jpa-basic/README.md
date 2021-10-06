@@ -1,5 +1,11 @@
 > 해당 내용은 인프런 김영한 강사님의 `자바 ORM 표준 JPA 프로그래밍 - 기본편`을 보고 작성하였으며, 문제가 있을 시 바로 삭제하도록 하겠습니다.
 
+## 목차 🚀
+- [JPA 시작하기](#jpa-----)
+- [영속성 관리 - 내부 동작 방식](#-----------------)
+- [엔티티 매핑](#------)
+---
+
 #### JPA 시작하기
 
 * Hello JPA - 프로젝트 생성
@@ -119,4 +125,32 @@
       query = em.createQuery("select m from Member as m", Member.class);
       List<Member> list = query.getResultList);
       ```
-        
+#### 엔티티 매핑
+
+* 객체와 테이블 매핑
+    * @Entity가 붙은 클래스는 JPA가 관리, 엔티티라 한다.
+    * 주의
+        > * 기본 생서자 필수(파라미터가 없는 `public` 또는 `protected` 생성자)
+        > * final class , enum, interface, inner class 에는 사용하지 않는다!
+        > * 저장할 필드에 final 사용 X (DB에 저장할 필드가 중간에 변경 되지 않는 경우가 있는가..)
+* 데이터베이스 스키마 자동 생성
+    * resources/META-INF/persistence.xml 설정
+        ```xml
+        <property name="hibernate.hbm2ddl.auto" value="create" />
+        ```
+        > * 🔥`주의` 개발 환경에서만 사용!
+        > * 운영 시 `절대!` `create`, `create-drop`, `update` 옵션 사용하지마라!
+* 필드와 컬럼 매핑
+    > * 🔥`주의` enum 타입은 @Enumerated(EnumType.STRING)를 꼭 설정하여 사용하자.
+* 기본 키 매핑
+    * @SequenceGenerator, @TableGenerator 사용 시 최적화를 위한 옵션 (50 ~ 100 적절)
+        ```java
+      /**
+      * 기본 키 id 값이 자동 증가할 때마다 DB를 직접 호출하는 것이 아닌 메모리에서 얻도록
+      * 미리 allocationSize 만큼 보유 하고 allocationSize를 넘어서면 새로 요청하는 것!
+      */
+      @SequenceGenerator(
+      ...
+      initialValue = 1, allocationSize = 50)
+        ```
+
