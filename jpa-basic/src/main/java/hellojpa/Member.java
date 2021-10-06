@@ -1,9 +1,6 @@
 package hellojpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 // 테이블명을 USER로 변경하고자 하면  설정
 // @Table(name = "USER")
@@ -19,6 +16,7 @@ public class Member {
     }
 
     @Id
+    @GeneratedValue
     private Long id;
 
     // 컬럼명 username로 변경하고자 하면 설정

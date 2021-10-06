@@ -14,8 +14,7 @@ public class JpaMain {
         transaction.begin();
 
         try {
-            Member member = new Member(1L, "Hello");
-
+            Member member = new Member();
             em.persist(member);
 
             Member a = em.find(Member.class, 1L);
@@ -24,7 +23,6 @@ public class JpaMain {
             Member c = a;
             // 주
             Member d = new Member(a.getId(), a.getName());
-
 
             System.out.println(a == b);
             System.out.println(b == c);
