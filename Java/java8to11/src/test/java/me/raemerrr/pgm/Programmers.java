@@ -12,6 +12,7 @@ package me.raemerrr.pgm;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,5 +73,21 @@ public class Programmers {
             }
         }
         assertThat(answer).isFalse();
+    }
+
+    @Test
+    public void 해시_위장() throws Exception {
+        String[][] clothes = {{"yellowhat", "headgear"}, {"bluesunglasses", "eyewear"}, {"green_turban", "headgear"}};
+        int answer = 1;
+        java.util.Map<String, Integer> m = new java.util.HashMap<>();
+        for (String[] arr : clothes) {
+            m.put(arr[1], m.getOrDefault(arr[1], 0) + 1);
+        }
+
+        for (java.util.Map.Entry<String, Integer> element : m.entrySet()) {
+            answer *= element.getValue() + 1;
+        }
+        // 아무것도 안 입는 경우는 없다.
+        assertThat(answer - 1).isEqualTo(5);
     }
 }
