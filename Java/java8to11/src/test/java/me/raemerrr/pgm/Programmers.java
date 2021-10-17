@@ -12,9 +12,11 @@ package me.raemerrr.pgm;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Programmers {
 
@@ -38,5 +40,37 @@ public class Programmers {
         }
 
         System.out.println(m.entrySet().iterator().next().getKey());
+    }
+
+    @Test
+    public void 전화번호_목록_211017() throws Exception {
+        boolean answer = true;
+        String[] phone_book = {"1195524421", "119", "97674223",};
+        java.util.Map<Character, java.util.ArrayList<String>> m = new java.util.HashMap<>();
+        for (String phoneNumber : phone_book) {
+            if (m.containsKey(phoneNumber.charAt(0))) {
+                m.get(phoneNumber.charAt(0)).add(phoneNumber);
+            } else {
+                m.put(phoneNumber.charAt(0), new java.util.ArrayList<>() {
+                    {
+                        add(phoneNumber);
+                    }
+                });
+            }
+        }
+        for (java.util.Map.Entry<Character, java.util.ArrayList<String>> element : m.entrySet()) {
+            java.util.ArrayList<String> v = element.getValue();
+            v.sort((String a, String b) -> a.compareTo(b));
+            for (int i = 0; i < v.size() - 1; i++) {
+                if (v.get(i + 1).startsWith(v.get(i))) {
+                    answer = false;
+                    break;
+                }
+            }
+            if (answer == false) {
+                break;
+            }
+        }
+        assertThat(answer).isFalse();
     }
 }
