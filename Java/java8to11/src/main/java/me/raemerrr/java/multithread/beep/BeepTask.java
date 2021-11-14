@@ -8,7 +8,7 @@
  *
  * Copyright © 2021 raemerrr. All rights reserved.
  */
-package me.raemerrr.java.multithread;
+package me.raemerrr.java.multithread.beep;
 
 import java.awt.*;
 
