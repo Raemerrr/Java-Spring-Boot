@@ -1,5 +1,6 @@
 package me.raemerrr.study;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LiveCoding {
+public class LiveCodingTest {
 //https://jeong-pro.tistory.com/212
 //    이름, 취미, 소개
 //    김프로, 축구:농구:야구, 구기종목 좋아요
@@ -67,6 +68,75 @@ public class LiveCoding {
 
     @Test
     @DisplayName("취미별 인원 수를 구하라")
+    void test_220405_01() {
+        List<List<String>> lines = csv;
+        lines.remove(0);
+        lines.stream()
+                .flatMap(list -> Arrays.stream(list.get(1).split(":")))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("취미별 정씨 성을 갖는 멤버 수를 구하라")
+    void test_220405_02() {
+        List<List<String>> lines = csv;
+        lines.remove(0);
+        lines.stream()
+                .filter(list -> list.get(0).startsWith("정"))
+                .flatMap(list -> Arrays.stream(list.get(1).split(":")))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("소개 내용에 '좋아'가 몇 번 등장하는지 구하라")
+    void test_220405_03() {
+        String pattern = "좋아";
+        List<List<String>> lines = csv;
+        lines.remove(0);
+        int result = lines.stream()
+                .filter(array -> array.get(2).contains(pattern))
+                .map(array -> numberOfPattern_220405(array.get(2), pattern))
+                .reduce(0, Integer::sum);
+        System.out.println(pattern + " : " + result);
+    }
+
+    int numberOfPattern_220405(String source, String pattern){
+        int index = source.indexOf(pattern);
+        if (index == -1){
+            return 0;
+        }
+        return 1 + numberOfPattern_220405(source.substring(index + 1), pattern);
+    }
+
+    @Test
+    @DisplayName("이분 탐색 구현")
+    void test_220405_04(){
+        List<Integer> list = Arrays.asList(1, 20, 50, 79, 300);
+        boolean result = binary_search_220405(list, 0, list.size() - 1, 3000);
+        Assertions.assertThat(result).isTrue();
+    }
+
+    boolean binary_search_220405(List<Integer> list, int left, int right, int target) {
+        boolean result = false;
+        while (left <= right) {
+            int mid = right + left / 2;
+            Integer midVal = list.get(mid);
+            if (midVal < target) {
+                left = mid + 1;
+            } else if (midVal > target) {
+                right = mid - 1;
+            } else /*if (midVal == target)*/ {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    @Test
+    @DisplayName("취미별 인원 수를 구하라")
     void test_220327_01() {
         List<List<String>> lines = csv;
         lines.remove(0);
@@ -86,15 +156,6 @@ public class LiveCoding {
                 .flatMap(array -> Arrays.stream(array.get(1).split(":")))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .forEach((key, value) -> System.out.println(key + " : " + value));
-    }
-
-    int numberOfPattern_220327(String str, String pattern) {
-        int result = 0;
-        int idx = str.indexOf(pattern);
-        if (idx != -1) {
-            result += numberOfPattern_220327(str.substring(idx + 1), pattern);
-        }
-        return result;
     }
 
     @Test
@@ -146,7 +207,7 @@ public class LiveCoding {
         System.out.println(result);
     }
 
-    int numberOfPattern(String source, final String pattern) {
+    int numberOfPattern(String source, String pattern) {
         int idx = source.indexOf(pattern);
         if (idx == -1) {
             return 0;
@@ -162,8 +223,7 @@ public class LiveCoding {
         lines.stream()
                 .flatMap(array -> Arrays.stream(array.get(1).split(":")))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-                .entrySet()
-                .forEach(entry -> System.out.println(entry.getKey() + " " + entry.getValue()));
+                .forEach((key, value) -> System.out.println(key + " " + value));
     }
 
     @Test
@@ -175,8 +235,7 @@ public class LiveCoding {
                 .filter(array -> array.get(0).startsWith("정"))
                 .flatMap(array -> Arrays.stream(array.get(1).split(":")))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-                .entrySet()
-                .forEach(entry -> System.out.println(entry.getKey() + " " + entry.getValue()));
+                .forEach((key, value) -> System.out.println(key + " " + value));
     }
 
     @Test
@@ -187,8 +246,7 @@ public class LiveCoding {
         lines.stream()
                 .flatMap(array -> Arrays.stream(array.get(1).split(":")))
                 .collect(Collectors.groupingBy(Function.identity()))
-                .entrySet()
-                .forEach(entry -> System.out.println(entry.getKey() + " " + entry.getValue()));
+                .forEach((key, value) -> System.out.println(key + " " + value));
     }
 
     @Test
@@ -243,8 +301,8 @@ public class LiveCoding {
     @DisplayName("Binary Search")
     void test09() {
         //List<Integer> list = IntStream.rangeClosed(0, 1000).boxed().collect(Collectors.toList());
-        List<Integer> list = IntStream.of(1, 4, 6, 7, 50, 600).boxed().collect(Collectors.toList());
-        assertThat(binary_search_220325(list, 0, list.size(), 5)).isTrue();
+        List<Integer> list = Arrays.asList(1, 4, 6, 7, 50, 600);
+        assertThat(binary_search_220325(list, 0, list.size() - 1, 6000)).isTrue();
     }
 
     @Test
