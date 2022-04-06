@@ -11,7 +11,7 @@
 package me.raemerrr.java.multithread.databox;
 
 public class WaitNotifyExample {
-    public static void main(String[] args) {
+    public void main(String[] args) {
         DataBox dataBox = new DataBox();
 
         ProducerThread producerThread = new ProducerThread(dataBox);

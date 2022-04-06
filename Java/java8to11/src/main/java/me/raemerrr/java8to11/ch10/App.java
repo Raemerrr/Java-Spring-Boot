@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class App {
-    public static void main(String[] args) {
+    public void main(String[] args) {
         List<OnlineClass> springClasses = new ArrayList<>();
         springClasses.add(new OnlineClass(1, "spring boot", true));
         springClasses.add(new OnlineClass(5, "rest api development", false));

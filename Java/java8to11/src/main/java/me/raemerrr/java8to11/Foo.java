@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Foo {
-    public static void main(String[] args) {
+    public void main(String[] args) {
         /* 1강 함수형 인터페이스와 람다 표현식 소개 */
         {
             int baseNumber = 10;

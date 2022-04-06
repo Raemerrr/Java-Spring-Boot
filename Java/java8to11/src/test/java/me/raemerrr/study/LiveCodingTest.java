@@ -115,7 +115,7 @@ public class LiveCodingTest {
     void test_220405_04(){
         List<Integer> list = Arrays.asList(1, 20, 50, 79, 300);
         boolean result = binary_search_220405(list, 0, list.size() - 1, 3000);
-        Assertions.assertThat(result).isTrue();
+        Assertions.assertThat(result).isFalse();
     }
 
     boolean binary_search_220405(List<Integer> list, int left, int right, int target) {
@@ -302,7 +302,7 @@ public class LiveCodingTest {
     void test09() {
         //List<Integer> list = IntStream.rangeClosed(0, 1000).boxed().collect(Collectors.toList());
         List<Integer> list = Arrays.asList(1, 4, 6, 7, 50, 600);
-        assertThat(binary_search_220325(list, 0, list.size() - 1, 6000)).isTrue();
+        assertThat(binary_search_220325(list, 0, list.size() - 1, 6000)).isFalse();
     }
 
     @Test
@@ -312,7 +312,7 @@ public class LiveCodingTest {
         List<Integer> list = IntStream.of(1, 4, 6, 7, 50, 600).boxed().collect(Collectors.toList());
 
 
-        assertThat(binary_search_220325(list, 0, list.size(), 5)).isTrue();
+        assertThat(binary_search_220325(list, 0, list.size(), 5)).isFalse();
     }
 
     boolean binary_search_220326(int[] list, int left, int right, int target) {

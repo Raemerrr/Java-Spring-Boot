@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class App {
-    public static void main(String[] args) {
+    public void main(String[] args) {
         /**
          * 원본 데이터를 변경시키지 않는다.
          * 스트림은 오직 한 번만 처리한다.

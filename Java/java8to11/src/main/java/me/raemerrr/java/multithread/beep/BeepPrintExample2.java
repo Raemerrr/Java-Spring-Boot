@@ -11,7 +11,7 @@
 package me.raemerrr.java.multithread.beep;
 
 public class BeepPrintExample2 {
-    public static void main(String[] args) {
+    public void main(String[] args) {
         Runnable beepTask = new BeepTask();
         Thread thread = new Thread(beepTask);
         thread.start();

@@ -55,7 +55,7 @@ public class CallbackExample {
         executorService.shutdown();
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         CallbackExample example = new CallbackExample();
         example.doWork("3", "3");
         example.doWork("3", "삼");
