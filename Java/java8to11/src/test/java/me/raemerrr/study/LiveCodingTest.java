@@ -1,5 +1,6 @@
 package me.raemerrr.study;
 
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 public class LiveCodingTest {
 //https://jeong-pro.tistory.com/212
 //    이름, 취미, 소개
@@ -68,6 +70,83 @@ public class LiveCodingTest {
 
     @Test
     @DisplayName("취미별 인원 수를 구하라")
+    void test_220407_01() {
+        List<List<String>> lines = csv;
+        lines.remove(0);
+        lines.stream()
+                .flatMap(array -> Arrays.stream(array.get(1).split(":")))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .forEach((key, value) -> System.out.println(key + " " + value));
+    }
+
+    @Test
+    @DisplayName("취미별 정씨 성을 갖는 멤버 수를 구하라")
+    void test_220407_02() {
+        List<List<String>> lines = csv;
+        lines.remove(0);
+        lines.stream()
+                .filter(array -> array.get(0).startsWith("정"))
+                .flatMap(array -> Arrays.stream(array.get(1).split(":")))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .forEach((key, value) -> System.out.println(key + " " + value));
+    }
+
+    @Test
+    @DisplayName("소개 내용에 '좋아'가 몇 번 등장하는지 구하라")
+    void test_220407_03() {
+        String pattern = "좋아";
+        List<List<String>> lines = csv;
+        lines.remove(0);
+        Integer result = lines.stream()
+                .filter(array -> array.get(2).contains(pattern))
+                .map(array -> numberOfPattern_220407(array.get(2), pattern))
+                .reduce(0, Integer::sum);
+        log.info("좋아 등장 횟수 : {}", result);
+    }
+
+    int numberOfPattern_220407(String source, String pattern) {
+        int idx = source.indexOf(pattern);
+        if (idx == -1) return 0;
+        return 1 + numberOfPattern_220405(source.substring(idx + 1), pattern);
+    }
+
+    @Test
+    @DisplayName("Binary Search")
+    void test_220407_04() {
+        List<Integer> list = Arrays.asList(1, 3, 4, 5, 6, 7, 10, 20, 500);
+        assertThat(binarySearch_220407(list, 0, list.size() - 1, 3)).isTrue();
+    }
+
+    boolean binarySearch_220407(List<Integer> list, int left, int right, int target) {
+        boolean result = false;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            int midVal = list.get(mid);
+            if (midVal < target) {
+                left = mid + 1;
+            } else if (midVal > target) {
+                right = mid - 1;
+            } else /*if (midVal == target) */ {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    @Test
+    @DisplayName("String Shuffle")
+    void test_220407_05() {
+        StringBuilder sb = new StringBuilder();
+        String str = "addlsowke";
+        List<String> list = Arrays.asList(str.split(""));
+        Collections.shuffle(list);
+        for (String s : list) sb.append(s);
+        System.out.println(sb);
+    }
+
+    @Test
+    @DisplayName("취미별 인원 수를 구하라")
     void test_220405_01() {
         List<List<String>> lines = csv;
         lines.remove(0);
@@ -102,9 +181,9 @@ public class LiveCodingTest {
         System.out.println(pattern + " : " + result);
     }
 
-    int numberOfPattern_220405(String source, String pattern){
+    int numberOfPattern_220405(String source, String pattern) {
         int index = source.indexOf(pattern);
-        if (index == -1){
+        if (index == -1) {
             return 0;
         }
         return 1 + numberOfPattern_220405(source.substring(index + 1), pattern);
@@ -112,7 +191,7 @@ public class LiveCodingTest {
 
     @Test
     @DisplayName("이분 탐색 구현")
-    void test_220405_04(){
+    void test_220405_04() {
         List<Integer> list = Arrays.asList(1, 20, 50, 79, 300);
         boolean result = binary_search_220405(list, 0, list.size() - 1, 3000);
         Assertions.assertThat(result).isFalse();
@@ -333,13 +412,5 @@ public class LiveCodingTest {
         List<Integer> list = IntStream.rangeClosed(1, 100).boxed().collect(Collectors.toList());
         assertThat(binary_search_220325(list, 0, list.size(), 1)).isTrue();
     }
-
-    @Test
-    @DisplayName("String Shuffle")
-    void test12() {
-
-
-    }
-
 
 }
