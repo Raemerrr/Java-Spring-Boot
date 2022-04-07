@@ -14,6 +14,5 @@ public class CoffeeMachine {
         coffee.drop();
         long endTime = System.currentTimeMillis();
         log.info("[{}] : {}ms", suffix, endTime - startTime);
-
     }
 }
