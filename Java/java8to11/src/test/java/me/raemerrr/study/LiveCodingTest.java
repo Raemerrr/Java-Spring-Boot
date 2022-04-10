@@ -70,6 +70,82 @@ public class LiveCodingTest {
 
     @Test
     @DisplayName("취미별 인원 수를 구하라")
+    void test_220411_01() {
+        List<List<String>> lines = csv;
+        lines.remove(0);
+        lines.stream()
+                .flatMap(array -> Arrays.stream(array.get(1).split(":")))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .forEach((key, value) -> System.out.println(key + " : " + value));
+    }
+
+    @Test
+    @DisplayName("취미별 정씨 성을 갖는 멤버 수를 구하라")
+    void test_220411_02() {
+        List<List<String>> lines = csv;
+        lines.remove(0);
+        lines.stream()
+                .filter(array -> array.get(0).startsWith("정"))
+                .flatMap(array -> Arrays.stream(array.get(1).split(":")))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .forEach((key, value) -> System.out.println(key + " : " + value));
+    }
+
+    @Test
+    @DisplayName("소개 내용에 '좋아'가 몇 번 등장하는지 구하라")
+    void test_220411_03() {
+        String pattern = "좋아";
+        List<List<String>> lines = csv;
+        lines.remove(0);
+        Integer result = lines.stream()
+                .filter(array -> array.get(2).contains(pattern))
+                .map(array -> numberOfPattern_220411(array.get(2), pattern))
+                .reduce(0, Integer::sum);
+        log.info("{} : {}", pattern, result);
+    }
+
+    int numberOfPattern_220411(String source, String pattern) {
+        int index = source.indexOf(pattern);
+        if (index == -1) return 0;
+        return 1 + numberOfPattern_220411(source.substring(index + 1), pattern);
+    }
+
+    @Test
+    @DisplayName("Binary Search")
+    void test_220411_04() {
+        List<Integer> list = Arrays.asList(-2, 1, 3, 20, 123, 441);
+        assertThat(binary_search_220411(list, 0, list.size() - 1, 441)).isTrue();
+    }
+
+    boolean binary_search_220411(List<Integer> list, int left, int right, int target) {
+        boolean result = false;
+        while (left <= right) {
+            int mid = (right + left) / 2;
+            int midVal = list.get(mid);
+            if (midVal < target) {
+                left = mid + 1;
+            } else if (midVal > target) {
+                right = mid - 1;
+            } else /*if (midVal == target)*/ {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    @Test
+    @DisplayName("String Shuffle")
+    void test_220411_05() {
+        String str = "LeetCode";
+        List<String> list = Arrays.stream(str.split("")).collect(Collectors.toList());
+        log.info("list : {}", list);
+        Collections.shuffle(list);
+        log.info("list : {}", list);
+    }
+
+    @Test
+    @DisplayName("취미별 인원 수를 구하라")
     void test_220407_01() {
         List<List<String>> lines = csv;
         lines.remove(0);
