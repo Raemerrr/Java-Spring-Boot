@@ -1,4 +1,4 @@
-package me.raemerrr.designpatterns.proxy.models;
+package me.raemerrr.designpatterns.proxy._220407;
 
 import lombok.extern.slf4j.Slf4j;
 

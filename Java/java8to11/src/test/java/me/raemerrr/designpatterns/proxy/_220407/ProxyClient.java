@@ -1,4 +1,4 @@
-package me.raemerrr.designpatterns.proxy.models;
+package me.raemerrr.designpatterns.proxy._220407;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,7 +14,6 @@ public class ProxyClient implements Subject{
     public ProxyClient(RealSubject realSubject){
         this.realSubjectl = realSubject;
     }
-
 
     @Override
     public String call() {
