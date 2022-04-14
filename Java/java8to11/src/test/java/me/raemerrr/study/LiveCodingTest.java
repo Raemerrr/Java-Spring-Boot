@@ -70,6 +70,17 @@ public class LiveCodingTest {
 
     @Test
     @DisplayName("취미별 인원 수를 구하라")
+    void test_220414_01() {
+        List<List<String>> lines = csv;
+        lines.remove(0);
+        lines.stream()
+                .flatMap(array -> Arrays.stream(array.get(1).split(":")))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .forEach((key, value) -> System.out.println(key + " : " + value));
+    }
+
+    @Test
+    @DisplayName("취미별 인원 수를 구하라")
     void test_220412_01() {
         List<List<String>> lines = csv;
         lines.remove(0);
